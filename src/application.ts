@@ -5,9 +5,10 @@ import {MySequence} from './sequence';
 /* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
 import {BootMixin, Booter, Binding} from '@loopback/boot';
+import { juggler, RepositoryMixin, Repository, Class } from '@loopback/repository';
 /* tslint:enable:no-unused-variable */
 
-export class MattePistachioApiApplication extends BootMixin(RestApplication) {
+export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(RestApplication)) {
   constructor(options?: ApplicationConfig) {
     super(options);
 
@@ -24,6 +25,16 @@ export class MattePistachioApiApplication extends BootMixin(RestApplication) {
         nested: true,
       },
     };
+    var dataSourceConfig = new juggler.DataSource({
+      name: 'db',
+      connector: 'loopback-connector-mysql',
+      host: 'localhost',
+      port: 3306,
+      database: 'matte_pistachio',
+      user: 'root',
+      password: 'HorcruX8!'
+    });
+    this.dataSource(dataSourceConfig);
   }
 
   async start() {
