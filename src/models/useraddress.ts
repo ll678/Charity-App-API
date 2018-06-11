@@ -36,11 +36,6 @@ export class UserAddress extends Entity {
     })
     country: string;
 
-    @property({
-        type: 'number',
-    })
-    country: number;
-
     getId() {
         return this.id;
     }
