@@ -15,7 +15,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, callback) {
-  db.createTable('roleTable', {
+  db.createTable('role', {
     id: {
       type: 'int',
       primaryKey: true
@@ -28,7 +28,7 @@ exports.up = function(db, callback) {
 };
 
 exports.down = function(db, callback) {
-  db.droptable('roleTable', callback);
+  db.droptable('role', callback);
 };
 
 exports._meta = {

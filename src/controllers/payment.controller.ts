@@ -9,12 +9,12 @@ export class PaymentController {
   ) {}
 
   @get('/payment')
-  async getAllPaymentMethods(): Promise<Array<Payment>> {
+  async findPayment(): Promise<Payment[]> {
     return await this.paymentRepo.find();
   }
 
   @post('/payment')
-  async createPaymentMethod(@requestBody() payment: Payment) {
+  async createPayment(@requestBody() payment: Payment) {
     return await this.paymentRepo.create(payment);
   }
 }

@@ -1,6 +1,7 @@
 import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
 import { post, get, requestBody, HttpErrors } from "@loopback/rest";
+import { Login } from '../models/login'
 import { User } from "../models/user";
 import { sign, verify } from 'jsonwebtoken';
 
@@ -10,20 +11,21 @@ export class LoginController {
   ) {}
 
   @post('/login')
-  async login(@requestBody() login: any): Promise<any> {
-    var users = await this.userRepo.find();
+  async login(@requestBody() login: Login): Promise<any> {
 
-    var email = login.email;
+    var users = await this.userRepo.find();
+    var username = login.username;
     var password = login.password;
 
     for (var i = 0; i < users.length; i++) {
       var user = users[i];
-      if (user.email == email && user.password == password) {
+      if (user.username == username && user.password == password) {
         var jwt = sign(
           {
             user: {
               id: user.id,
               firstname: user.firstname,
+              lastname: user.lastname,
               email: user.email
             },
             anything: "hello"
@@ -41,19 +43,19 @@ export class LoginController {
       }
     }
 
-    throw new HttpErrors.NotFound('User not found, sorry!');
+    throw new HttpErrors.Unauthorized('Your username or password might be incorrect. Please try again.');
   }
 
-  @post('/login-with-query')
+  @post('/loginWithQuery')
   async loginWithQuery(@requestBody() login: any): Promise<User> {
     var users = await this.userRepo.find({
       where: {
-        and: [{email: login.email}, {password: login.password}],
+        and: [{username: login.username}, {password: login.password}],
       },
     });
 
     if (users.length == 0) {
-      throw new HttpErrors.NotFound('User not found, sorry!');
+      throw new HttpErrors.Unauthorized('Sorry but it seems we could not find your user.');
     }
 
     return users[0];

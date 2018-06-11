@@ -15,7 +15,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, callback) {
-  db.createTable('userAddressTable', {
+  db.createTable('userAddress', {
     id: {
       type: 'int',
       primaryKey: true
@@ -48,7 +48,7 @@ exports.up = function(db, callback) {
 };
 
 exports.down = function(db, callback) {
-  db.droptable('userAddressTable', callback);
+  db.droptable('userAddress', callback);
 };
 
 exports._meta = {

@@ -6,20 +6,20 @@ import { Charity } from "../models/charity";
 export class CharityController {
   constructor(
     @repository(CharityRepository.name) private charityRepo: CharityRepository
-  ) {}
+  ) { }
 
-  @get('/charity')
-  async getAllCharity(): Promise<Array<Charity>> {
+  @get('/charityTable')
+  async findCharity(): Promise<Charity[]> {
     return await this.charityRepo.find();
   }
 
-  @get('/charity/{id}')
+  @get('/charityTable/{id}')
   async findCharityById(@param.path.number('id') id: number): Promise<Charity> {
+
     // Check for valid ID
     let charityExists: boolean = !!(await this.charityRepo.count({ id }));
-
     if (!charityExists) {
-      throw new HttpErrors.BadRequest(`charity ID ${id} does not exist`);
+      throw new HttpErrors.BadRequest(`Unfortunately charity ID ${id} does not exist in our system.`);
     }
 
     return await this.charityRepo.findById(id);

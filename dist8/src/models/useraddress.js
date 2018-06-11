@@ -60,7 +60,7 @@ __decorate([
 ], UserAddress.prototype, "zipcode", void 0);
 UserAddress = __decorate([
     repository_1.model({
-        name: "useraddress"
+        name: "userAddress"
     })
 ], UserAddress);
 exports.UserAddress = UserAddress;

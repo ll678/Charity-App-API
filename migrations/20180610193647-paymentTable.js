@@ -15,7 +15,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, callback) {
-  db.createTable('paymentTable', {
+  db.createTable('payment', {
     id: {
       type: 'int',
       primaryKey: true
@@ -47,7 +47,7 @@ exports.up = function(db, callback) {
 };
 
 exports.down = function(db, callback) {
-  db.droptable('paymentTable', callback);
+  db.droptable('payment', callback);
 };
 
 exports._meta = {

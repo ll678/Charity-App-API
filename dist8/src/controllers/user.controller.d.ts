@@ -3,6 +3,6 @@ import { User } from "../models/user";
 export declare class UserController {
     private userRepo;
     constructor(userRepo: UserRepository);
-    getAllUsers(): Promise<Array<User>>;
+    findUser(): Promise<Array<User>>;
     findUserById(id: number): Promise<User>;
 }

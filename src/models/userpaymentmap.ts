@@ -1,7 +1,7 @@
 import { Entity, property, model } from '@loopback/repository';
 
 @model({
-    name: "userpaymentmap"
+    name: "userPaymentMap"
 })
 export class UserPaymentMap extends Entity {
 

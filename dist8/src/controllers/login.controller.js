@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const user_repository_1 = require("../repositories/user.repository");
 const rest_1 = require("@loopback/rest");
+const login_1 = require("../models/login");
 const jsonwebtoken_1 = require("jsonwebtoken");
 let LoginController = class LoginController {
     constructor(userRepo) {
@@ -22,15 +23,16 @@ let LoginController = class LoginController {
     }
     async login(login) {
         var users = await this.userRepo.find();
-        var email = login.email;
+        var username = login.username;
         var password = login.password;
         for (var i = 0; i < users.length; i++) {
             var user = users[i];
-            if (user.email == email && user.password == password) {
+            if (user.username == username && user.password == password) {
                 var jwt = jsonwebtoken_1.sign({
                     user: {
                         id: user.id,
                         firstname: user.firstname,
+                        lastname: user.lastname,
                         email: user.email
                     },
                     anything: "hello"
@@ -43,16 +45,16 @@ let LoginController = class LoginController {
                 };
             }
         }
-        throw new rest_1.HttpErrors.NotFound('User not found, sorry!');
+        throw new rest_1.HttpErrors.Unauthorized('User not found, sorry!');
     }
     async loginWithQuery(login) {
         var users = await this.userRepo.find({
             where: {
-                and: [{ email: login.email }, { password: login.password }],
+                and: [{ username: login.username }, { password: login.password }],
             },
         });
         if (users.length == 0) {
-            throw new rest_1.HttpErrors.NotFound('User not found, sorry!');
+            throw new rest_1.HttpErrors.Unauthorized('Sorry but we could not find your user!');
         }
         return users[0];
     }
@@ -61,11 +63,11 @@ __decorate([
     rest_1.post('/login'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [login_1.Login]),
     __metadata("design:returntype", Promise)
 ], LoginController.prototype, "login", null);
 __decorate([
-    rest_1.post('/login-with-query'),
+    rest_1.post('/loginWithQuery'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

@@ -15,7 +15,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, callback) {
-  db.createTable('charityTable', {
+  db.createTable('charity', {
     id: {
       type: 'int',
       primaryKey: true
@@ -49,7 +49,7 @@ exports.up = function(db, callback) {
 
 
 exports.down = function(db, callback) {
-  db.droptable('charityTable', callback);
+  db.droptable('charity', callback);
 };
 
 exports._meta = {

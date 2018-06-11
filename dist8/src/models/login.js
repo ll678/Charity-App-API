@@ -10,34 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
-let UserPaymentMap = class UserPaymentMap extends repository_1.Entity {
-    getId() {
-        return this.id;
-    }
+let Login = class Login extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
-        type: 'number',
-        id: true
+        type: 'string',
+        required: true
     }),
-    __metadata("design:type", Number)
-], UserPaymentMap.prototype, "id", void 0);
+    __metadata("design:type", String)
+], Login.prototype, "username", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
+        type: 'string',
+        required: true
     }),
-    __metadata("design:type", Number)
-], UserPaymentMap.prototype, "userid", void 0);
-__decorate([
-    repository_1.property({
-        type: 'number',
-    }),
-    __metadata("design:type", Number)
-], UserPaymentMap.prototype, "paymentid", void 0);
-UserPaymentMap = __decorate([
+    __metadata("design:type", String)
+], Login.prototype, "password", void 0);
+Login = __decorate([
     repository_1.model({
-        name: "userPaymentMap"
+        name: "login"
     })
-], UserPaymentMap);
-exports.UserPaymentMap = UserPaymentMap;
-//# sourceMappingURL=userpaymentmap.js.map
+], Login);
+exports.Login = Login;
+//# sourceMappingURL=login.js.map

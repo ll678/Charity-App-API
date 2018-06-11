@@ -3,6 +3,6 @@ import { Charity } from "../models/charity";
 export declare class CharityController {
     private charityRepo;
     constructor(charityRepo: CharityRepository);
-    getAllCharity(): Promise<Array<Charity>>;
+    findCharity(): Promise<Charity[]>;
     findCharityById(id: number): Promise<Charity>;
 }

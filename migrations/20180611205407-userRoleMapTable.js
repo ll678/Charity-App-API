@@ -15,7 +15,7 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db, callback) {
-  db.createTable('userRoleMapTable', {
+  db.createTable('userRoleMap', {
     id: {
       type: 'int',
       primaryKey: true
@@ -32,7 +32,7 @@ exports.up = function (db, callback) {
 };
 
 exports.down = function (db, callback) {
-  db.droptable('userRoleMapTable', callback);
+  db.droptable('userRoleMap', callback);
 };
 
 exports._meta = {

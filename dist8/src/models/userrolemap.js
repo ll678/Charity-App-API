@@ -36,7 +36,7 @@ __decorate([
 ], UserRoleMap.prototype, "roleid", void 0);
 UserRoleMap = __decorate([
     repository_1.model({
-        name: "userrolemap"
+        name: "userRoleMap"
     })
 ], UserRoleMap);
 exports.UserRoleMap = UserRoleMap;

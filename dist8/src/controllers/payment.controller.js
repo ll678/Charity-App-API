@@ -20,10 +20,10 @@ let PaymentController = class PaymentController {
     constructor(paymentRepo) {
         this.paymentRepo = paymentRepo;
     }
-    async getAllPaymentMethods() {
+    async findPayment() {
         return await this.paymentRepo.find();
     }
-    async createPaymentMethod(payment) {
+    async createPayment(payment) {
         return await this.paymentRepo.create(payment);
     }
 };
@@ -32,14 +32,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], PaymentController.prototype, "getAllPaymentMethods", null);
+], PaymentController.prototype, "findPayment", null);
 __decorate([
     rest_1.post('/payment'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [payment_1.Payment]),
     __metadata("design:returntype", Promise)
-], PaymentController.prototype, "createPaymentMethod", null);
+], PaymentController.prototype, "createPayment", null);
 PaymentController = __decorate([
     __param(0, repository_1.repository(payment_repository_1.PaymentRepository.name)),
     __metadata("design:paramtypes", [payment_repository_1.PaymentRepository])

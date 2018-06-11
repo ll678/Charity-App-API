@@ -60,7 +60,7 @@ __decorate([
 ], CharityAddress.prototype, "zipcode", void 0);
 CharityAddress = __decorate([
     repository_1.model({
-        name: "charityaddress"
+        name: "charityAddress"
     })
 ], CharityAddress);
 exports.CharityAddress = CharityAddress;

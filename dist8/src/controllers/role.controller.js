@@ -19,7 +19,7 @@ let RoleController = class RoleController {
     constructor(roleRepo) {
         this.roleRepo = roleRepo;
     }
-    async getAllRoles() {
+    async findRole() {
         return await this.roleRepo.find();
     }
 };
@@ -28,7 +28,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], RoleController.prototype, "getAllRoles", null);
+], RoleController.prototype, "findRole", null);
 RoleController = __decorate([
     __param(0, repository_1.repository(role_repository_1.RoleRepository.name)),
     __metadata("design:paramtypes", [role_repository_1.RoleRepository])

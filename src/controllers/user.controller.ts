@@ -9,17 +9,17 @@ export class UserController {
   ) {}
 
   @get('/user')
-  async getAllUsers(): Promise<Array<User>> {
+  async findUser(): Promise<Array<User>> {
     return await this.userRepo.find();
   }
 
   @get('/user/{id}')
   async findUserById(@param.path.number('id') id: number): Promise<User> {
+
     // Check for valid ID
     let userExists: boolean = !!(await this.userRepo.count({ id }));
-
     if (!userExists) {
-      throw new HttpErrors.BadRequest(`user ID ${id} does not exist`);
+      throw new HttpErrors.BadRequest(`Unfortunately user ID ${id} does not exist in our system.`);
     }
 
     return await this.userRepo.findById(id);

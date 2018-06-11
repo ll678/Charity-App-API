@@ -36,7 +36,7 @@ __decorate([
 ], UserCharityMap.prototype, "charityid", void 0);
 UserCharityMap = __decorate([
     repository_1.model({
-        name: "usercharitymap"
+        name: "userCharityMap"
     })
 ], UserCharityMap);
 exports.UserCharityMap = UserCharityMap;

@@ -19,26 +19,26 @@ let CharityController = class CharityController {
     constructor(charityRepo) {
         this.charityRepo = charityRepo;
     }
-    async getAllCharity() {
+    async findCharity() {
         return await this.charityRepo.find();
     }
     async findCharityById(id) {
         // Check for valid ID
         let charityExists = !!(await this.charityRepo.count({ id }));
         if (!charityExists) {
-            throw new rest_1.HttpErrors.BadRequest(`charity ID ${id} does not exist`);
+            throw new rest_1.HttpErrors.BadRequest(`Unfortunately charity ID ${id} does not exist in our system.`);
         }
         return await this.charityRepo.findById(id);
     }
 };
 __decorate([
-    rest_1.get('/charity'),
+    rest_1.get('/charityTable'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], CharityController.prototype, "getAllCharity", null);
+], CharityController.prototype, "findCharity", null);
 __decorate([
-    rest_1.get('/charity/{id}'),
+    rest_1.get('/charityTable/{id}'),
     __param(0, rest_1.param.path.number('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

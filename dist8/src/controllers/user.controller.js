@@ -19,14 +19,14 @@ let UserController = class UserController {
     constructor(userRepo) {
         this.userRepo = userRepo;
     }
-    async getAllUsers() {
+    async findUser() {
         return await this.userRepo.find();
     }
     async findUserById(id) {
         // Check for valid ID
         let userExists = !!(await this.userRepo.count({ id }));
         if (!userExists) {
-            throw new rest_1.HttpErrors.BadRequest(`user ID ${id} does not exist`);
+            throw new rest_1.HttpErrors.BadRequest(`Unfortunately user ID ${id} does not exist in our system.`);
         }
         return await this.userRepo.findById(id);
     }
@@ -36,7 +36,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "getAllUsers", null);
+], UserController.prototype, "findUser", null);
 __decorate([
     rest_1.get('/user/{id}'),
     __param(0, rest_1.param.path.number('id')),

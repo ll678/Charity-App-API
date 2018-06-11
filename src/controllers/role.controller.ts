@@ -9,7 +9,7 @@ export class RoleController {
   ) {}
 
   @get('/role')
-  async getAllRoles(): Promise<Array<Role>> {
+  async findRole(): Promise<Role[]> {
     return await this.roleRepo.find();
   }
 }
