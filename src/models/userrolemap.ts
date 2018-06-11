@@ -11,6 +11,16 @@ export class UserRoleMap extends Entity {
     })
     id?: number;
 
+    @property({
+        type: 'number',
+    })
+    userid: number;
+
+    @property({
+        type: 'number',
+    })
+    roleid: number;
+
     getId() {
         return this.id;
     }

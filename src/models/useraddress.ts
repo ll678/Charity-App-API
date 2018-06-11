@@ -12,9 +12,9 @@ export class UserAddress extends Entity {
     id?: number;
 
     @property({
-        type: 'number',
+        type: 'string',
     })
-    aptnumber: number;
+    aptnumber: string;
 
     @property({
         type: 'string',
@@ -37,9 +37,9 @@ export class UserAddress extends Entity {
     country: string;
 
     @property({
-        type: 'number',
+        type: 'string',
     })
-    country: number;
+    zipcode: string;
 
     getId() {
         return this.id;

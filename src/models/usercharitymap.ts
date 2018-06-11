@@ -11,6 +11,16 @@ export class UserCharityMap extends Entity {
     })
     id?: number;
 
+    @property({
+        type: 'number',
+    })
+    userid: number;
+
+    @property({
+        type: 'number',
+    })
+    charityid: number;
+
     getId() {
         return this.id;
     }

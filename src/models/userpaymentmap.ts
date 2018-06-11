@@ -11,6 +11,16 @@ export class UserPaymentMap extends Entity {
     })
     id?: number;
 
+    @property({
+        type: 'number',
+    })
+    userid: number;
+
+    @property({
+        type: 'number',
+    })
+    paymentid: number;
+
     getId() {
         return this.id;
     }

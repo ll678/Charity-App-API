@@ -41,15 +41,15 @@ exports.up = function(db, callback) {
       length: 50
     },
     accountnumber: {
-      type: 'string',
+      type: 'int',
       length: 50
     }
   }, callback);
 };
 
 
-exports.down = function(db) {
-  return null;
+exports.down = function(db, callback) {
+  db.droptable('charityTable', callback);
 };
 
 exports._meta = {

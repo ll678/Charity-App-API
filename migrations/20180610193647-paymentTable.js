@@ -15,7 +15,7 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, callback) {
-  db.createTable('paymentsTable', {
+  db.createTable('paymentTable', {
     id: {
       type: 'int',
       primaryKey: true
@@ -26,15 +26,14 @@ exports.up = function(db, callback) {
     },
     cardnumber: {
       type: 'string',
-      length: 50
+      length: 16
     },
     expiry: {
       type: 'string',
       length: 50
     },
     CVV: {
-      type: 'string',
-      length: 50
+      type: 'int'
     },
     bank: {
       type: 'string',
@@ -47,8 +46,8 @@ exports.up = function(db, callback) {
   }, callback);
 };
 
-exports.down = function(db) {
-  return null;
+exports.down = function(db, callback) {
+  db.droptable('paymentTable', callback);
 };
 
 exports._meta = {

@@ -19,12 +19,20 @@ exports.up = function(db, callback) {
     id: {
       type: 'int',
       primaryKey: true
+    },
+    userid: {
+      type: 'int',
+      length: 11
+    },
+    charityid: {
+      type: 'int',
+      length: 11
     }
   }, callback);
 };
 
-exports.down = function(db) {
-  return null;
+exports.down = function(db, callback) {
+  db.droptable('userCharityTable', callback);
 };
 
 exports._meta = {

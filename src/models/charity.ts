@@ -37,9 +37,9 @@ export class Charity extends Entity {
     bank: string;
 
     @property({
-        type: 'string',
+        type: 'number',
     })
-    accountnumber: string;
+    accountnumber: number;
 
     getId() {
         return this.id;
