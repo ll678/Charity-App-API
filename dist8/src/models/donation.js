@@ -30,9 +30,9 @@ __decorate([
 ], Donation.prototype, "amount", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
+        type: 'string',
     }),
-    __metadata("design:type", Date)
+    __metadata("design:type", String)
 ], Donation.prototype, "datefrom", void 0);
 Donation = __decorate([
     repository_1.model({

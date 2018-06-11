@@ -6,6 +6,6 @@ export declare class Charity extends Entity {
     img: string;
     url: string;
     bank: string;
-    accountnumber: string;
+    accountnumber: number;
     getId(): number | undefined;
 }

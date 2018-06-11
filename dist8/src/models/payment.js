@@ -27,19 +27,37 @@ __decorate([
         type: 'string',
     }),
     __metadata("design:type", String)
+], Payment.prototype, "name", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
 ], Payment.prototype, "cardnumber", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
     }),
     __metadata("design:type", String)
-], Payment.prototype, "expirationdate", void 0);
+], Payment.prototype, "expiry", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    __metadata("design:type", Number)
+], Payment.prototype, "CVV", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
     }),
     __metadata("design:type", String)
 ], Payment.prototype, "bank", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Payment.prototype, "nickname", void 0);
 Payment = __decorate([
     repository_1.model({
         name: "payment"

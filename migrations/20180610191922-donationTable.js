@@ -25,7 +25,7 @@ exports.up = function(db, callback) {
       length: 5
     },
     datefrom: {
-      type: 'date',
+      type: 'string',
     }
   }, callback);
 };

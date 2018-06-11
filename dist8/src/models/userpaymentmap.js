@@ -22,6 +22,18 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], UserPaymentMap.prototype, "id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    __metadata("design:type", Number)
+], UserPaymentMap.prototype, "userid", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    __metadata("design:type", Number)
+], UserPaymentMap.prototype, "paymentid", void 0);
 UserPaymentMap = __decorate([
     repository_1.model({
         name: "userpaymentmap"

@@ -22,6 +22,18 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], UserRoleMap.prototype, "id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    __metadata("design:type", Number)
+], UserRoleMap.prototype, "userid", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    __metadata("design:type", Number)
+], UserRoleMap.prototype, "roleid", void 0);
 UserRoleMap = __decorate([
     repository_1.model({
         name: "userrolemap"

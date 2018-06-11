@@ -24,9 +24,9 @@ __decorate([
 ], UserAddress.prototype, "id", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
+        type: 'string',
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], UserAddress.prototype, "aptnumber", void 0);
 __decorate([
     repository_1.property({
@@ -52,6 +52,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], UserAddress.prototype, "country", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], UserAddress.prototype, "zipcode", void 0);
 UserAddress = __decorate([
     repository_1.model({
         name: "useraddress"

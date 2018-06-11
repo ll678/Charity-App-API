@@ -52,6 +52,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], CharityAddress.prototype, "country", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], CharityAddress.prototype, "zipcode", void 0);
 CharityAddress = __decorate([
     repository_1.model({
         name: "charityaddress"

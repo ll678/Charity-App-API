@@ -6,5 +6,6 @@ export declare class CharityAddress extends Entity {
     city: string;
     state: string;
     country: string;
+    zipcode: string;
     getId(): number | undefined;
 }

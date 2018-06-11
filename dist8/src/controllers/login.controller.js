@@ -45,6 +45,17 @@ let LoginController = class LoginController {
         }
         throw new rest_1.HttpErrors.NotFound('User not found, sorry!');
     }
+    async loginWithQuery(login) {
+        var users = await this.userRepo.find({
+            where: {
+                and: [{ email: login.email }, { password: login.password }],
+            },
+        });
+        if (users.length == 0) {
+            throw new rest_1.HttpErrors.NotFound('User not found, sorry!');
+        }
+        return users[0];
+    }
 };
 __decorate([
     rest_1.post('/login'),
@@ -53,6 +64,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], LoginController.prototype, "login", null);
+__decorate([
+    rest_1.post('/login-with-query'),
+    __param(0, rest_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], LoginController.prototype, "loginWithQuery", null);
 LoginController = __decorate([
     __param(0, repository_1.repository(user_repository_1.UserRepository.name)),
     __metadata("design:paramtypes", [user_repository_1.UserRepository])

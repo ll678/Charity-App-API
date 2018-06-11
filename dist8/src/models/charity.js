@@ -54,9 +54,9 @@ __decorate([
 ], Charity.prototype, "bank", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
+        type: 'number',
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], Charity.prototype, "accountnumber", void 0);
 Charity = __decorate([
     repository_1.model({

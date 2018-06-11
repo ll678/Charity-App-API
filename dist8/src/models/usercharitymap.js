@@ -22,6 +22,18 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], UserCharityMap.prototype, "id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    __metadata("design:type", Number)
+], UserCharityMap.prototype, "userid", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    __metadata("design:type", Number)
+], UserCharityMap.prototype, "charityid", void 0);
 UserCharityMap = __decorate([
     repository_1.model({
         name: "usercharitymap"
