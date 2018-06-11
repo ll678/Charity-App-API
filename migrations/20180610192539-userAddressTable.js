@@ -40,15 +40,15 @@ exports.up = function(db, callback) {
       type: 'string',
       length: 50
     },
-    zip_code: {
+    zipcode: {
       type: 'string',
-      length: 50
+      length: 10
     }
   }, callback);
 };
 
-exports.down = function(db) {
-  return null;
+exports.down = function(db, callback) {
+  db.droptable('userAddressTable', callback);
 };
 
 exports._meta = {

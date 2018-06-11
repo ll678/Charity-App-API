@@ -14,17 +14,32 @@ export class Payment extends Entity {
     @property({
         type: 'string',
     })
+    name: string;
+
+    @property({
+        type: 'string',
+    })
     cardnumber: string;
 
     @property({
         type: 'string',
     })
-    expirationdate: string;
+    expiry: string;
+
+    @property({
+        type: 'number',
+    })
+    CVV: number;
 
     @property({
         type: 'string',
     })
     bank: string;
+
+    @property({
+        type: 'string',
+    })
+    nickname: string;
 
     getId() {
         return this.id;

@@ -1,7 +1,11 @@
 import { ApplicationConfig } from '@loopback/core';
 import { RestApplication } from '@loopback/rest';
 import { Booter, Binding } from '@loopback/boot';
+<<<<<<< HEAD
 import { juggler, Repository, Class } from '@loopback/repository';
+=======
+import { Class, Repository, juggler } from '@loopback/repository';
+>>>>>>> bd28b030964f345d75e35ef6bcd7f8b12dc1ff13
 declare const MattePistachioApiApplication_base: (new (...args: any[]) => {
     [x: string]: any;
     projectRoot: string;

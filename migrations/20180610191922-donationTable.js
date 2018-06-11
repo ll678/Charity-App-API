@@ -21,18 +21,17 @@ exports.up = function(db, callback) {
       primaryKey: true
     },
     amount: {
-      type: 'string',
-      length: 50
+      type: 'int',
+      length: 5
     },
     datefrom: {
-      type: 'string',
-      length: 50
+      type: 'date',
     }
   }, callback);
 };
 
-exports.down = function(db) {
-  return null;
+exports.down = function(db, callback) {
+  db.droptable('donationTable', callback);
 };
 
 exports._meta = {

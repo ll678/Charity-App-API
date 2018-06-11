@@ -6,6 +6,10 @@ const sequence_1 = require("./sequence");
 // Binding and Booter imports are required to infer types for BootMixin!
 const boot_1 = require("@loopback/boot");
 const repository_1 = require("@loopback/repository");
+<<<<<<< HEAD
+=======
+const user_repository_1 = require("./repositories/user.repository");
+>>>>>>> bd28b030964f345d75e35ef6bcd7f8b12dc1ff13
 /* tslint:enable:no-unused-variable */
 class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
@@ -32,6 +36,10 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
             password: 'HorcruX8!'
         });
         this.dataSource(dataSourceConfig);
+<<<<<<< HEAD
+=======
+        this.repository(user_repository_1.UserRepository);
+>>>>>>> bd28b030964f345d75e35ef6bcd7f8b12dc1ff13
     }
     async start() {
         await super.start();

@@ -17,7 +17,7 @@ export class Donation extends Entity {
     amount: number;
 
     @property({
-        type: 'number',
+        type: 'Date',
     })
     datefrom: Date;
 

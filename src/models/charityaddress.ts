@@ -36,6 +36,11 @@ export class CharityAddress extends Entity {
     })
     country: string;
 
+    @property({
+        type: 'string',
+    })
+    zipcode: string;
+
     getId() {
         return this.id;
     }

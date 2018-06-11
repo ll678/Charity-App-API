@@ -38,7 +38,7 @@ exports.up = function(db, callback) {
     },
     phonenumber: {
       type: 'string',
-      length: 16
+      length: 50
     },
     password: {
       type: 'string',
@@ -47,8 +47,8 @@ exports.up = function(db, callback) {
   }, callback);
 };
 
-exports.down = function(db) {
-  return null;
+exports.down = function(db, callback) {
+  db.dropTable('userTable', callback);
 };
 
 exports._meta = {
