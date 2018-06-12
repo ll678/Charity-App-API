@@ -4,6 +4,7 @@ import { post, get, requestBody, HttpErrors } from "@loopback/rest";
 import { Login } from '../models/login'
 import { User } from "../models/user";
 import { sign, verify } from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt';
 
 export class LoginController {
   constructor(
@@ -15,11 +16,10 @@ export class LoginController {
 
     var users = await this.userRepo.find();
     var username = login.username;
-    var password = login.password;
 
     for (var i = 0; i < users.length; i++) {
       var user = users[i];
-      if (user.username == username && user.password == password) {
+      if (user.username == username && await bcrypt.compare(login.password, user.password)) {
         var jwt = sign(
           {
             user: {

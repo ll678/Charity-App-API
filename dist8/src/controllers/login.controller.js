@@ -17,6 +17,7 @@ const user_repository_1 = require("../repositories/user.repository");
 const rest_1 = require("@loopback/rest");
 const login_1 = require("../models/login");
 const jsonwebtoken_1 = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 let LoginController = class LoginController {
     constructor(userRepo) {
         this.userRepo = userRepo;
@@ -24,10 +25,9 @@ let LoginController = class LoginController {
     async login(login) {
         var users = await this.userRepo.find();
         var username = login.username;
-        var password = login.password;
         for (var i = 0; i < users.length; i++) {
             var user = users[i];
-            if (user.username == username && user.password == password) {
+            if (user.username == username && await bcrypt.compare(login.password, user.password)) {
                 var jwt = jsonwebtoken_1.sign({
                     user: {
                         id: user.id,
@@ -45,7 +45,7 @@ let LoginController = class LoginController {
                 };
             }
         }
-        throw new rest_1.HttpErrors.Unauthorized('User not found, sorry!');
+        throw new rest_1.HttpErrors.Unauthorized('Your username or password might be incorrect. Please try again.');
     }
     async loginWithQuery(login) {
         var users = await this.userRepo.find({
@@ -54,7 +54,7 @@ let LoginController = class LoginController {
             },
         });
         if (users.length == 0) {
-            throw new rest_1.HttpErrors.Unauthorized('Sorry but we could not find your user!');
+            throw new rest_1.HttpErrors.Unauthorized('Sorry but it seems we could not find your user.');
         }
         return users[0];
     }

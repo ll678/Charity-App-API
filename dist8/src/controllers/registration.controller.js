@@ -16,12 +16,24 @@ const repository_1 = require("@loopback/repository");
 const user_repository_1 = require("../repositories/user.repository");
 const rest_1 = require("@loopback/rest");
 const user_1 = require("../models/user");
+const bcrypt = require("bcrypt");
 let RegistrationController = class RegistrationController {
     constructor(userRepo) {
         this.userRepo = userRepo;
     }
-    async createUser(user) {
-        return await this.userRepo.create(user);
+    async verifyAndCreateUser(user) {
+        let hashedPassword = await bcrypt.hash(user.password, 10);
+        var userToStore = new user_1.User();
+        userToStore.id = user.id;
+        userToStore.username = user.username;
+        userToStore.firstname = user.firstname;
+        userToStore.lastname = user.lastname;
+        userToStore.email = user.email;
+        userToStore.phonenumber = user.phonenumber;
+        userToStore.password = hashedPassword;
+        let storedUser = await this.userRepo.create(userToStore);
+        storedUser.password = "";
+        return storedUser;
     }
 };
 __decorate([
@@ -30,7 +42,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_1.User]),
     __metadata("design:returntype", Promise)
-], RegistrationController.prototype, "createUser", null);
+], RegistrationController.prototype, "verifyAndCreateUser", null);
 RegistrationController = __decorate([
     __param(0, repository_1.repository(user_repository_1.UserRepository.name)),
     __metadata("design:paramtypes", [user_repository_1.UserRepository])
