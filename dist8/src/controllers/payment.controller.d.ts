@@ -5,4 +5,5 @@ export declare class PaymentController {
     constructor(paymentRepo: PaymentRepository);
     findPayment(): Promise<Payment[]>;
     createPayment(payment: Payment): Promise<Payment>;
+    createStripePayment(stripeToken: string): Promise<any>;
 }

@@ -26,6 +26,22 @@ let PaymentController = class PaymentController {
     async createPayment(payment) {
         return await this.paymentRepo.create(payment);
     }
+    async createStripePayment(stripeToken) {
+        // Set your secret key: remember to change this to your live secret key in production
+        // See your keys here: https://dashboard.stripe.com/account/apikeys
+        var stripe = require("stripe")("sk_test_PT8I5dfDT3DyisRxL6d4fTVM");
+        // Token is created using Checkout or Elements!
+        // Get the payment token ID submitted by the form:
+        const token = stripeToken; // Using Express
+        const charge = stripe.charges.create({
+            amount: 999,
+            currency: 'usd',
+            description: 'Example charge',
+            source: token,
+            metadata: { order_id: 6735 },
+        });
+        return charge;
+    }
 };
 __decorate([
     rest_1.get('/payment'),
@@ -40,6 +56,13 @@ __decorate([
     __metadata("design:paramtypes", [payment_1.Payment]),
     __metadata("design:returntype", Promise)
 ], PaymentController.prototype, "createPayment", null);
+__decorate([
+    rest_1.post('/stripepayment'),
+    __param(0, rest_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], PaymentController.prototype, "createStripePayment", null);
 PaymentController = __decorate([
     __param(0, repository_1.repository(payment_repository_1.PaymentRepository.name)),
     __metadata("design:paramtypes", [payment_repository_1.PaymentRepository])

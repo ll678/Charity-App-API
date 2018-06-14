@@ -23,14 +23,24 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
                 nested: true,
             },
         };
+        var databaseName = null;
+        var databasePassword = 'HorcruX8!';
+        var databaseUsername = 'root';
+        if (environment == 'lawrence') {
+            databaseName = 'gthread123';
+        }
+        if (environment == 'jeff') {
+            databaseName = 'hello';
+        }
+        var environment = process.env.NODE_ENV;
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: 'db',
             connector: 'loopback-connector-mysql',
             host: 'localhost',
             port: 3306,
-            database: 'matte_pistachio',
-            user: 'root',
-            password: 'HorcruX8!'
+            database: databaseName,
+            user: databaseUsername,
+            password: databasePassword
         });
         this.dataSource(dataSourceConfig);
         this.repository(user_repository_1.UserRepository);
