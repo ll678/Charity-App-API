@@ -5,4 +5,5 @@ export declare class UserController {
     constructor(userRepo: UserRepository);
     findUser(): Promise<Array<User>>;
     findUserById(id: number): Promise<User>;
+    getUserInformation(jwt: string): Promise<any>;
 }

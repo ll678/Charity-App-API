@@ -1,7 +1,8 @@
 import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
-import { post, get, requestBody, HttpErrors, param } from "@loopback/rest";
+import { get, HttpErrors, param } from "@loopback/rest";
 import { User } from "../models/user";
+import {sign, verify} from 'jsonwebtoken';
 
 export class UserController {
   constructor(
@@ -23,6 +24,20 @@ export class UserController {
     }
 
     return await this.userRepo.findById(id);
+  }
+
+  //Passing user information
+  @get('/me')
+  async getUserInformation(@param.query.string('jwt') jwt: string): Promise<any> {
+    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
+
+    try {
+      var jwtBody = verify(jwt, 'shh') as any;
+      console.log(jwtBody);
+      return jwtBody.user;
+    } catch (err) {
+      throw new HttpErrors.BadRequest('JWT token invalid');
+    }
   }
 
 }

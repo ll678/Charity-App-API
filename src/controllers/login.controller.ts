@@ -24,6 +24,7 @@ export class LoginController {
           {
             user: {
               id: user.id,
+              username: user.username,
               firstname: user.firstname,
               lastname: user.lastname,
               email: user.email
