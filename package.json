@@ -30,7 +30,8 @@
     "posttest": "npm run lint",
     "prestart": "npm run build:current",
     "start": "node .",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm run test",
+    "JuCJeff": "NODE_ENV=JuCJeff DATABASE_NAME=matte_pistachio npm start"
   },
   "repository": {
     "type": "git"
