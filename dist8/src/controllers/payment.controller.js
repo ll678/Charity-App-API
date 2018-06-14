@@ -16,6 +16,7 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const payment_1 = require("../models/payment");
 const payment_repository_1 = require("../repositories/payment.repository");
+const stripetoken_1 = require("../models/stripetoken");
 let PaymentController = class PaymentController {
     constructor(paymentRepo) {
         this.paymentRepo = paymentRepo;
@@ -32,7 +33,7 @@ let PaymentController = class PaymentController {
         var stripe = require("stripe")("sk_test_PT8I5dfDT3DyisRxL6d4fTVM");
         // Token is created using Checkout or Elements!
         // Get the payment token ID submitted by the form:
-        const token = stripeToken; // Using Express
+        const token = stripeToken.id; // Using Express
         const charge = stripe.charges.create({
             amount: 999,
             currency: 'usd',
@@ -60,7 +61,7 @@ __decorate([
     rest_1.post('/stripepayment'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [stripetoken_1.StripeToken]),
     __metadata("design:returntype", Promise)
 ], PaymentController.prototype, "createStripePayment", null);
 PaymentController = __decorate([
