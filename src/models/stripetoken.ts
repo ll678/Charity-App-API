@@ -11,4 +11,10 @@ export class StripeToken extends Entity {
     })
     id: string;
 
+    @property({
+        type: 'number',
+        required: true
+    })
+    amount: number;
+
 }

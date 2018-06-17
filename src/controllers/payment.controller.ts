@@ -30,7 +30,7 @@ export class PaymentController {
     const token = stripeToken.id; // Using Express
 
     const charge = stripe.charges.create({
-      amount: 999,
+      amount: stripeToken.amount,
       currency: 'usd',
       description: 'Example charge',
       source: token,

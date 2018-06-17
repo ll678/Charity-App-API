@@ -35,7 +35,7 @@ let PaymentController = class PaymentController {
         // Get the payment token ID submitted by the form:
         const token = stripeToken.id; // Using Express
         const charge = stripe.charges.create({
-            amount: 999,
+            amount: stripeToken.amount,
             currency: 'usd',
             description: 'Example charge',
             source: token,

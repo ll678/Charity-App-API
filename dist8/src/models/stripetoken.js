@@ -19,6 +19,13 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], StripeToken.prototype, "id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
+        required: true
+    }),
+    __metadata("design:type", Number)
+], StripeToken.prototype, "amount", void 0);
 StripeToken = __decorate([
     repository_1.model({
         name: "stripetoken"
