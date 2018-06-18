@@ -18,31 +18,14 @@ exports.up = function (db, callback) {
   db.createTable('userRoleMap', {
     id: {
       type: 'int',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     userid: {
       type: 'int',
-      foreignKey: {
-        name: 'rolemap_user_fk',
-        table: 'user',
-        rules: {
-          onDelete: 'RESTRICT',
-          onUpdate: 'RESTRICT'
-        },
-        mapping: 'id'
-      }
     },
     roleid: {
       type: 'int',
-      foreignKey: {
-        name: 'rolemap_role_fk',
-        table: 'role',
-        rules: {
-          onDelete: 'RESTRICT',
-          onUpdate: 'RESTRICT'
-        },
-        mapping: 'id'
-      }
     }
   }, callback);
 };

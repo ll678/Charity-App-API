@@ -18,7 +18,8 @@ exports.up = function(db, callback) {
   db.createTable('userAddress', {
     id: {
       type: 'int',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     aptnumber: {
       type: 'string',
