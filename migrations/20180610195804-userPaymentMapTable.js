@@ -22,11 +22,27 @@ exports.up = function(db, callback) {
     },
     userid: {
       type: 'int',
-      length: 11
+      foreignKey: {
+        name: 'paymentmap_user_fk',
+        table: 'user',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
     },
     paymentid: {
       type: 'int',
-      length: 11
+      foreignKey: {
+        name: 'paymentmap_payment_fk',
+        table: 'payment',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
     }
   }, callback);
 };
