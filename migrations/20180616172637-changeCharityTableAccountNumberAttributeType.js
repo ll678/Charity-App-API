@@ -15,34 +15,48 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db, callback) {
-
-  db.removeColumn('charity', 'accountnumber', function (err) {
+  db.changeColumn('charity', 'accountnumber', {
+    type: 'string',
+    length: 50
+  }, function(err) {
     if (err) return callback(err);
-
-    db.addColumn('charity', 'accountnumber', {
-      type: 'string',
-      length: 50
-    }, function (err) {
-      if (err) return callback(err);
-    });
   });
-
 };
+//   db.removeColumn('charity', 'accountnumber', function (err) {
+//     if (err) return callback(err);
+
+//     db.addColumn('charity', 'accountnumber', {
+//       type: 'string',
+//       length: 50
+//     }, function (err) {
+//       if (err) return callback(err);
+//     });
+//   });
+
+// };
 
 exports.down = function (db, callback) {
 
-  db.removeColumn('charity', 'accountnumber', function (err) {
+  db.changeColumn('charity', 'accountnumber', {
+    type: 'int',
+    length: 50
+  }, function(err) {
     if (err) return callback(err);
-
-    db.addColumn('charity', 'accountnumber', {
-      type: 'int',
-      length: 50
-    }, function (err) {
-      if (err) return callback(err);
-    });
   });
-
 };
+
+//   db.removeColumn('charity', 'accountnumber', function (err) {
+//     if (err) return callback(err);
+
+//     db.addColumn('charity', 'accountnumber', {
+//       type: 'int',
+//       length: 50
+//     }, function (err) {
+//       if (err) return callback(err);
+//     });
+//   });
+
+// };
 
 exports._meta = {
   "version": 1

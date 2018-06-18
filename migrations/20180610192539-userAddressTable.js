@@ -48,7 +48,7 @@ exports.up = function(db, callback) {
 };
 
 exports.down = function(db, callback) {
-  db.droptable('userAddress', callback);
+  db.dropTable('userAddress', callback);
 };
 
 exports._meta = {

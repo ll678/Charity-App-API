@@ -48,7 +48,7 @@ exports.up = function(db, callback) {
 };
 
 exports.down = function(db, callback) {
-  db.droptable('charityAddress', callback);
+  db.dropTable('charityAddress', callback);
 };
 
 exports._meta = {

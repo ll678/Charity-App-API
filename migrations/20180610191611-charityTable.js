@@ -49,7 +49,7 @@ exports.up = function(db, callback) {
 
 
 exports.down = function(db, callback) {
-  db.droptable('charity', callback);
+  db.dropTable('charity', callback);
 };
 
 exports._meta = {

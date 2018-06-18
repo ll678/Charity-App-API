@@ -31,7 +31,7 @@ exports.up = function(db, callback) {
 };
 
 exports.down = function(db, callback) {
-  db.droptable('donation', callback);
+  db.dropTable('donation', callback);
 };
 
 exports._meta = {

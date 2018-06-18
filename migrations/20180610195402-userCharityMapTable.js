@@ -32,7 +32,7 @@ exports.up = function(db, callback) {
 };
 
 exports.down = function(db, callback) {
-  db.droptable('userCharityMap', callback);
+  db.dropTable('userCharityMap', callback);
 };
 
 exports._meta = {

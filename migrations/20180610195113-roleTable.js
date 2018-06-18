@@ -28,7 +28,7 @@ exports.up = function(db, callback) {
 };
 
 exports.down = function(db, callback) {
-  db.droptable('role', callback);
+  db.dropTable('role', callback);
 };
 
 exports._meta = {
