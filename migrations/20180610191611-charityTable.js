@@ -41,7 +41,7 @@ exports.up = function(db, callback) {
       length: 50
     },
     accountnumber: {
-      type: 'int',
+      type: 'string',
       length: 50
     }
   }, callback);

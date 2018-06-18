@@ -21,8 +21,8 @@ exports.up = function(db, callback) {
       primaryKey: true
     },
     aptnumber: {
-      type: 'int',
-      length: 10
+      type: 'string',
+      length: 50
     },
     street: {
       type: 'string',
@@ -42,7 +42,7 @@ exports.up = function(db, callback) {
     },
     zipcode: {
       type: 'string',
-      length: 10
+      length: 50
     }
   }, callback);
 };

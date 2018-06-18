@@ -34,14 +34,18 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
             databaseName = 'hello';
         }
         console.log("environment: ", environment);
+        // var dataSourceConfig = new juggler.DataSource({
+        //   name: 'db',
+        //   connector: 'loopback-connector-mysql',
+        //   host: 'localhost',
+        //   port: 3306,
+        //   database: databaseName,
+        //   user: databaseUsername,
+        //   password: databasePassword
+        // });
         var dataSourceConfig = new repository_1.juggler.DataSource({
-            name: 'db',
-            connector: 'loopback-connector-mysql',
-            host: 'localhost',
-            port: 3306,
-            database: databaseName,
-            user: databaseUsername,
-            password: databasePassword
+            name: "db",
+            connector: "memory"
         });
         this.dataSource(dataSourceConfig);
         this.repository(user_repository_1.UserRepository);
