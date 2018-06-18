@@ -30,7 +30,7 @@ export class UserController {
   @get('/me')
   async getUserInformation(@param.query.string('jwt') jwt: string): Promise<any> {
     if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
-
+    
     try {
       var jwtBody = verify(jwt, 'shh') as any;
       console.log(jwtBody);
@@ -39,5 +39,4 @@ export class UserController {
       throw new HttpErrors.BadRequest('JWT token invalid');
     }
   }
-
 }

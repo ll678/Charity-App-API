@@ -41,6 +41,11 @@ export class User extends Entity {
     })
     password: string;
 
+    @property({
+        type: 'string',
+    })
+    confirmpassword: string;
+
     getId() {
         return this.id;
     }
