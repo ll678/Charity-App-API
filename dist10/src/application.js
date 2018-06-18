@@ -6,6 +6,7 @@ const sequence_1 = require("./sequence");
 // Binding and Booter imports are required to infer types for BootMixin!
 const boot_1 = require("@loopback/boot");
 const repository_1 = require("@loopback/repository");
+const user_repository_1 = require("./repositories/user.repository");
 /* tslint:enable:no-unused-variable */
 class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
@@ -22,16 +23,32 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
                 nested: true,
             },
         };
+        var environment = process.env.NODE_ENV;
+        var databaseName = 'matte_pistachio';
+        var databaseUsername = 'root';
+        var databasePassword = 'HorcruX8!';
+        if (environment == "JuCJeff") {
+            process.env.DATABASE_NAME;
+        }
+        if (environment == "perry") {
+            databaseName = 'hello';
+        }
+        console.log("environment: ", environment);
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: 'db',
             connector: 'loopback-connector-mysql',
             host: 'localhost',
             port: 3306,
-            database: 'matte_pistachio',
-            user: 'root',
-            password: 'HorcruX8!'
+            database: databaseName,
+            user: databaseUsername,
+            password: databasePassword
         });
+        // var dataSourceConfig = new juggler.DataSource({
+        //   name: "db",
+        //   connector: "memory"
+        // });
         this.dataSource(dataSourceConfig);
+        this.repository(user_repository_1.UserRepository);
     }
     async start() {
         await super.start();
