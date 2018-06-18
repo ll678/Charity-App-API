@@ -23,6 +23,9 @@ let DonationController = class DonationController {
     async createDonation(donation) {
         return await this.donationRepo.create(donation);
     }
+    async findDonation() {
+        return await this.donationRepo.find();
+    }
 };
 __decorate([
     rest_1.post('/donation'),
@@ -31,6 +34,12 @@ __decorate([
     __metadata("design:paramtypes", [donation_1.Donation]),
     __metadata("design:returntype", Promise)
 ], DonationController.prototype, "createDonation", null);
+__decorate([
+    rest_1.get('/donation'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], DonationController.prototype, "findDonation", null);
 DonationController = __decorate([
     __param(0, repository_1.repository(donation_repository_1.DonationRepository.name)),
     __metadata("design:paramtypes", [donation_repository_1.DonationRepository])

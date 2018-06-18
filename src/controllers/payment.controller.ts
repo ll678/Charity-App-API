@@ -3,11 +3,12 @@ import { post, get, requestBody, HttpErrors, param } from "@loopback/rest";
 import { Payment } from "../models/payment";
 import { PaymentRepository } from "../repositories/payment.repository";
 import { StripeToken } from "../models/stripetoken";
+import { sign, verify } from 'jsonwebtoken';
 
 export class PaymentController {
   constructor(
     @repository(PaymentRepository.name) private paymentRepo: PaymentRepository
-  ) {}
+  ) { }
 
   @get('/payment')
   async findPayment(): Promise<Payment[]> {
@@ -34,10 +35,24 @@ export class PaymentController {
       currency: 'usd',
       description: 'Example charge',
       source: token,
-      metadata: {order_id: 6735},
+      metadata: { order_id: 6735 },
     });
 
     return charge;
+  }
+
+  //Passing user information
+  @get('/me')
+  async getUserInformation(@param.query.string('jwt') jwt: string): Promise<any> {
+    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
+
+    try {
+      var jwtBody = verify(jwt, 'shh') as any;
+      console.log(jwtBody);
+      return jwtBody.user;
+    } catch (err) {
+      throw new HttpErrors.BadRequest('JWT token invalid');
+    }
   }
 
 }
