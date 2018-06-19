@@ -36,8 +36,8 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
 
     var environment = process.env.NODE_ENV;
     var databaseName = 'matte_pistachio';
-    var databaseUsername = 'root';
-    var databasePassword = 'HorcruX8!';
+    var databaseUsername = 'ix-fs-s1';
+    var databasePassword = 'ixperience2018';
 
     if (environment == "JuCJeff") {
       process.env.DATABASE_NAME as string;
@@ -52,7 +52,7 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
     var dataSourceConfig = new juggler.DataSource({
       name: 'db',
       connector: 'loopback-connector-mysql',
-      host: 'localhost',
+      host: 'ix-fs-1.ce5d5ftkvwyr.eu-west-1.rds.amazonaws.com',
       port: 3306,
       database: databaseName,
       user: databaseUsername,

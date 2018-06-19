@@ -5,12 +5,11 @@
 
     "live": {
         "driver": "mysql",
-        "user": {
-            "ENV": "PRODUCTION_USERNAME"
-        },
-        "password": {
-            "ENV": "PRODUCTION_PASSWORD"
-        }
+        "host": "ix-fs-1.ce5d5ftkvwyr.eu-west-1.rds.amazonaws.com",
+        "port": "3306",
+        "user": "ix_fs_1",
+        "password": "ixperience2018",
+        "database": "matte-pistachio"
     },
     
     "dev": {
