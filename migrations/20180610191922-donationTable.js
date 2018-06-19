@@ -18,7 +18,8 @@ exports.up = function(db, callback) {
   db.createTable('donation', {
     id: {
       type: 'int',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     amount: {
       type: 'int',
@@ -26,6 +27,30 @@ exports.up = function(db, callback) {
     },
     datefrom: {
       type: 'string',
+    },
+    userid: {
+      type: 'int',
+      foreignKey: {
+        name: 'donation_user_id_fk',
+        table: 'user',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
+    },
+    charityid: {
+      type: 'int',
+      foreignKey: {
+        name: 'donation_charity_id_fk',
+        table: 'charity',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id' 
+      }
     }
   }, callback);
 };

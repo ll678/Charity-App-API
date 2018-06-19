@@ -18,7 +18,8 @@ exports.up = function(db, callback) {
   db.createTable('role', {
     id: {
       type: 'int',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     role: {
       type: 'string',

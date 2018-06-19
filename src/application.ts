@@ -19,9 +19,15 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
       }
     });
 
+    // super({
+    //   rest: {
+    //     port: process.env.PORT || 3000
+    //   }
+    // });
+
     // Set up the custom sequence
     this.sequence(MySequence);
-
+    
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
     this.bootOptions = {
@@ -38,7 +44,7 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
     var databaseUsername = 'root';
     var databasePassword = 'HorcruX8!';
 
-    if (environment == "JuCJeff") {
+    if (environment == "bansreepatel") {
       process.env.DATABASE_NAME as string;
     }
 
