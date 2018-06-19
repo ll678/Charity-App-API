@@ -1,10 +1,23 @@
 {
+    "defaultEnv": {
+        "ENV": "NODE_ENV"
+    },
+
+    "live": {
+        "driver": "mysql",
+        "host": "ix-fs-1.ce5d5ftkvwyr.eu-west-1.rds.amazonaws.com",
+        "port": "3306",
+        "user": "ix_fs_1",
+        "password": "ixperience2018",
+        "database": "matte-pistachio"
+    },
+    
     "dev": {
-    "driver": "mysql",
-    "host": "localhost",
-    "port": "3306",
-    "user": "root",
-    "password": "HorcruX8!",
-    "database": "matte_pistachio"
+        "driver": "mysql",
+        "host": "localhost",
+        "port": "3306",
+        "user": "root",
+        "password": "HorcruX8!",
+        "database": "matte_pistachio"
     }
 }
