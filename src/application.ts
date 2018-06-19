@@ -38,7 +38,7 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
     var databaseUsername = 'root';
     var databasePassword = 'HorcruX8!';
 
-    if (environment == "JuCJeff") {
+    if (environment == "bansreepatel") {
       process.env.DATABASE_NAME as string;
     }
 
