@@ -30,9 +30,27 @@ exports.up = function(db, callback) {
     },
     userid: {
       type: 'int',
+      foreignKey: {
+        name: 'donation_user_id_fk',
+        table: 'user',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
     },
     charityid: {
       type: 'int',
+      foreignKey: {
+        name: 'donation_charity_id_fk',
+        table: 'charity',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id' 
+      }
     }
   }, callback);
 };

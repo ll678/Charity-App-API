@@ -21,7 +21,7 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
 
     // Set up the custom sequence
     this.sequence(MySequence);
-
+    
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
     this.bootOptions = {
