@@ -11,6 +11,11 @@ const user_repository_1 = require("./repositories/user.repository");
 class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
         super(options);
+        // super({
+        //   rest: {
+        //     port: process.env.PORT || 3000
+        //   }
+        // });
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         this.projectRoot = __dirname;
@@ -27,7 +32,7 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
         var databaseName = 'matte_pistachio';
         var databaseUsername = 'root';
         var databasePassword = 'HorcruX8!';
-        if (environment == "JuCJeff") {
+        if (environment == "bansreepatel") {
             process.env.DATABASE_NAME;
         }
         if (environment == "perry") {
