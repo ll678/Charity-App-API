@@ -16,11 +16,6 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
                 port: process.env.PORT || 3000
             }
         });
-        // super({
-        //   rest: {
-        //     port: process.env.PORT || 3000
-        //   }
-        // });
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         this.projectRoot = __dirname;
@@ -35,9 +30,9 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
         };
         var environment = process.env.NODE_ENV;
         var databaseName = 'matte_pistachio';
-        var databaseUsername = 'root';
-        var databasePassword = 'HorcruX8!';
-        if (environment == "bansreepatel") {
+        var databaseUsername = 'ix-fs-s1';
+        var databasePassword = 'ixperience2018';
+        if (environment == "JuCJeff") {
             process.env.DATABASE_NAME;
         }
         if (environment == "perry") {
@@ -47,11 +42,11 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: 'db',
             connector: 'loopback-connector-mysql',
-            host: 'localhost',
+            host: process.env.DATABASE_HOST,
             port: 3306,
-            database: databaseName,
-            user: databaseUsername,
-            password: databasePassword
+            database: process.env.DATABASE_NAME,
+            user: process.env.DATABASE_USERNAME,
+            password: process.env.DATABASE_PASSWORD
         });
         // var dataSourceConfig = new juggler.DataSource({
         //   name: "db",

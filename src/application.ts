@@ -11,6 +11,7 @@ import { UserRepository } from './repositories/user.repository';
 /* tslint:enable:no-unused-variable */
 export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(RestApplication)) {
   constructor(options?: ApplicationConfig) {
+    
     // super(options);
 
     super({
@@ -41,8 +42,8 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
 
     var environment = process.env.NODE_ENV;
     var databaseName = 'matte_pistachio';
-    var databaseUsername = 'root';
-    var databasePassword = 'HorcruX8!';
+    var databaseUsername = 'ix-fs-s1';
+    var databasePassword = 'ixperience2018';
 
     if (environment == "bansreepatel") {
       process.env.DATABASE_NAME as string;
@@ -57,11 +58,11 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
     var dataSourceConfig = new juggler.DataSource({
       name: 'db',
       connector: 'loopback-connector-mysql',
-      host: 'localhost',
+      host: process.env.DATABASE_HOST,
       port: 3306,
-      database: databaseName,
-      user: databaseUsername,
-      password: databasePassword
+      database: process.env.DATABASE_NAME,
+      user: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD
     });
 
     // var dataSourceConfig = new juggler.DataSource({
