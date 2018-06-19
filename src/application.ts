@@ -52,11 +52,11 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
     var dataSourceConfig = new juggler.DataSource({
       name: 'db',
       connector: 'loopback-connector-mysql',
-      host: 'ix-fs-1.ce5d5ftkvwyr.eu-west-1.rds.amazonaws.com',
+      host: process.env.DATABASE_HOST,
       port: 3306,
-      database: databaseName,
-      user: databaseUsername,
-      password: databasePassword
+      database: process.env.DATABASE_NAME,
+      user: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD
     });
 
     // var dataSourceConfig = new juggler.DataSource({
