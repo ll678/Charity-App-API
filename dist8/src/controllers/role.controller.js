@@ -15,14 +15,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const role_repository_1 = require("../repositories/role.repository");
 const rest_1 = require("@loopback/rest");
+const role_1 = require("../models/role");
 let RoleController = class RoleController {
     constructor(roleRepo) {
         this.roleRepo = roleRepo;
+    }
+    async createRole(role) {
+        return await this.roleRepo.create(role);
     }
     async findRole() {
         return await this.roleRepo.find();
     }
 };
+__decorate([
+    rest_1.post('/role'),
+    __param(0, rest_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [role_1.Role]),
+    __metadata("design:returntype", Promise)
+], RoleController.prototype, "createRole", null);
 __decorate([
     rest_1.get('/role'),
     __metadata("design:type", Function),

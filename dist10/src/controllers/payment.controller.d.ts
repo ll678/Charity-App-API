@@ -7,4 +7,5 @@ export declare class PaymentController {
     findPayment(): Promise<Payment[]>;
     createPayment(payment: Payment): Promise<Payment>;
     createStripePayment(stripeToken: StripeToken): Promise<any>;
+    getUserInformation(jwt: string): Promise<any>;
 }

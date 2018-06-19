@@ -10,7 +10,12 @@ const user_repository_1 = require("./repositories/user.repository");
 /* tslint:enable:no-unused-variable */
 class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
-        super(options);
+        // super(options);
+        super({
+            rest: {
+                port: process.env.PORT || 3000
+            }
+        });
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         this.projectRoot = __dirname;
