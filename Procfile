@@ -1,1 +1,1 @@
-web: node run live
+web: node .
