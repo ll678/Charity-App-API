@@ -43,7 +43,7 @@ exports.up = function(db, callback) {
     },
     password: {
       type: 'string',
-      length: 50
+      length: 2048
     }
   }, callback);
 };

@@ -43,6 +43,10 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
             user: databaseUsername,
             password: databasePassword
         });
+        // var dataSourceConfig = new juggler.DataSource({
+        //   name: "db",
+        //   connector: "memory"
+        // });
         this.dataSource(dataSourceConfig);
         this.repository(user_repository_1.UserRepository);
     }

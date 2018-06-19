@@ -34,7 +34,8 @@ exports.up = function(db, callback) {
       length: 50
     },
     CVV: {
-      type: 'int'
+      type: 'int',
+      length: 11
     },
     bank: {
       type: 'string',

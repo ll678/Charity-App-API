@@ -17,23 +17,46 @@ const user_repository_1 = require("../repositories/user.repository");
 const rest_1 = require("@loopback/rest");
 const user_1 = require("../models/user");
 const bcrypt = require("bcrypt");
+const jsonwebtoken_1 = require("jsonwebtoken");
 let RegistrationController = class RegistrationController {
     constructor(userRepo) {
         this.userRepo = userRepo;
     }
-    async verifyAndCreateUser(user) {
+    async createUser(user) {
+        var users = await this.userRepo.find();
+        var username = user.username;
         let hashedPassword = await bcrypt.hash(user.password, 10);
-        var userToStore = new user_1.User();
-        userToStore.id = user.id;
-        userToStore.username = user.username;
-        userToStore.firstname = user.firstname;
-        userToStore.lastname = user.lastname;
-        userToStore.email = user.email;
-        userToStore.phonenumber = user.phonenumber;
-        userToStore.password = hashedPassword;
-        let storedUser = await this.userRepo.create(userToStore);
+        user.password = hashedPassword;
+        let userAlreadyExists = !!(await this.userRepo.count({ email: user.email }));
+        if (userAlreadyExists) {
+            throw new rest_1.HttpErrors.BadRequest("this email address already exists");
+        }
+        let usernameIsTaken = !!(await this.userRepo.count({ username: user.username }));
+        if (usernameIsTaken) {
+            throw new rest_1.HttpErrors.BadRequest("this username already exists");
+        }
+        let storedUser = await this.userRepo.create(user);
         storedUser.password = "";
-        return storedUser;
+        var jwt = jsonwebtoken_1.sign({
+            user: {
+                username: user.username,
+                password: user.password,
+                confirmpassword: user.confirmpassword,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                phonenumber: user.phonenumber,
+                email: user.email
+            }
+        }, 'shh', {
+            issuer: 'auth.ix.co.za',
+            audience: 'ix.co.za',
+        });
+        return {
+            token: jwt,
+        };
+    }
+    async getAllUsers() {
+        return await this.userRepo.find();
     }
 };
 __decorate([
@@ -42,7 +65,13 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_1.User]),
     __metadata("design:returntype", Promise)
-], RegistrationController.prototype, "verifyAndCreateUser", null);
+], RegistrationController.prototype, "createUser", null);
+__decorate([
+    rest_1.get('/registration'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], RegistrationController.prototype, "getAllUsers", null);
 RegistrationController = __decorate([
     __param(0, repository_1.repository(user_repository_1.UserRepository.name)),
     __metadata("design:paramtypes", [user_repository_1.UserRepository])

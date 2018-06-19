@@ -11,7 +11,13 @@ import { UserRepository } from './repositories/user.repository';
 /* tslint:enable:no-unused-variable */
 export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(RestApplication)) {
   constructor(options?: ApplicationConfig) {
-    super(options);
+    // super(options);
+
+    super({
+      rest: {
+        port: process.env.PORT||3000
+      }
+    });
 
     // super({
     //   rest: {
