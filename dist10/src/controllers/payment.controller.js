@@ -17,6 +17,7 @@ const rest_1 = require("@loopback/rest");
 const payment_1 = require("../models/payment");
 const payment_repository_1 = require("../repositories/payment.repository");
 const stripetoken_1 = require("../models/stripetoken");
+const jsonwebtoken_1 = require("jsonwebtoken");
 let PaymentController = class PaymentController {
     constructor(paymentRepo) {
         this.paymentRepo = paymentRepo;
@@ -43,6 +44,19 @@ let PaymentController = class PaymentController {
         });
         return charge;
     }
+    //Passing user information
+    async getUserInformation(jwt) {
+        if (!jwt)
+            throw new rest_1.HttpErrors.Unauthorized('JWT token is required.');
+        try {
+            var jwtBody = jsonwebtoken_1.verify(jwt, 'shh');
+            console.log(jwtBody);
+            return jwtBody.user;
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.BadRequest('JWT token invalid');
+        }
+    }
 };
 __decorate([
     rest_1.get('/payment'),
@@ -64,6 +78,13 @@ __decorate([
     __metadata("design:paramtypes", [stripetoken_1.StripeToken]),
     __metadata("design:returntype", Promise)
 ], PaymentController.prototype, "createStripePayment", null);
+__decorate([
+    rest_1.get('/me'),
+    __param(0, rest_1.param.query.string('jwt')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], PaymentController.prototype, "getUserInformation", null);
 PaymentController = __decorate([
     __param(0, repository_1.repository(payment_repository_1.PaymentRepository.name)),
     __metadata("design:paramtypes", [payment_repository_1.PaymentRepository])
