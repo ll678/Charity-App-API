@@ -3,9 +3,9 @@ import { Charity } from "../models/charity";
 export declare class CharityController {
     private charityRepo;
     constructor(charityRepo: CharityRepository);
-    createCharity(charity: Charity): Promise<Charity>;
-    findCharity(): Promise<Charity[]>;
-    findCharityById(id: number): Promise<Charity>;
+    createCharity(jwt: string, charity: Charity): Promise<Charity>;
+    findCharity(jwt: string): Promise<Charity[]>;
+    findCharityById(jwt: string, id: number): Promise<Charity>;
     getUserInformation(jwt: string): Promise<any>;
     addMyCharity(id: number): Promise<void>;
     removeMyCharity(id: number): Promise<void>;

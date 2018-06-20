@@ -10,25 +10,60 @@ export class CharityController {
   ) { }
 
   @post('/charity')
-  async createCharity(@requestBody() charity: Charity) {
+  async createCharity(
+    @param.query.string('jwt') jwt: string,
+    @requestBody() charity: Charity, ) {
+    //Make endpoints secure
+    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
+
+    try {
+      var jwtBody = verify(jwt, 'shh') as any;
+      console.log(jwtBody);
+    } catch (err) {
+      throw new HttpErrors.BadRequest('JWT token invalid');
+    }
+    
     charity.favorited = false;
+    //Post charities
     return await this.charityRepo.create(charity);
   }
 
   @get('/charity')
-  async findCharity(): Promise<Charity[]> {
+  async findCharity(@param.query.string('jwt') jwt: string): Promise<Charity[]> {
+    //Make endpoints secure
+    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
+
+    try {
+      var jwtBody = verify(jwt, 'shh') as any;
+      console.log(jwtBody);
+    } catch (err) {
+      throw new HttpErrors.BadRequest('JWT token invalid');
+    }
+
+    //Find charities
     return await this.charityRepo.find();
   }
 
   @get('/charity/{id}')
-  async findCharityById(@param.path.number('id') id: number): Promise<Charity> {
+  async findCharityById(
+    @param.query.string('jwt') jwt: string,
+    @param.path.number('id') id: number): Promise<Charity> {
+    //Make endpoints secure
+    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
 
-    // Check for valid ID
+    try {
+      var jwtBody = verify(jwt, 'shh') as any;
+      console.log(jwtBody);
+    } catch (err) {
+      throw new HttpErrors.BadRequest('JWT token invalid');
+    }
+
+    //Check for valid ID
     let charityExists: boolean = !!(await this.charityRepo.count({ id }));
     if (!charityExists) {
       throw new HttpErrors.BadRequest(`Unfortunately charity ID ${id} does not exist in our system.`);
     }
-
+    //Find charity by ID
     return await this.charityRepo.findById(id);
   }
 

@@ -11,17 +11,54 @@ export class PaymentController {
   ) { }
 
   @get('/payment')
-  async findPayment(): Promise<Payment[]> {
+  async findPayment(@param.query.string('jwt') jwt: string): Promise<Payment[]> {
+    //Make endpoints secure
+    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
+
+    try {
+      var jwtBody = verify(jwt, 'shh') as any;
+      console.log(jwtBody);
+    } catch (err) {
+      throw new HttpErrors.BadRequest('JWT token invalid');
+    }
+
+    //Find payments
     return await this.paymentRepo.find();
   }
 
   @post('/payment')
-  async createPayment(@requestBody() payment: Payment) {
+  async createPayment(
+    @param.query.string('jwt') jwt: string,
+    @requestBody() payment: Payment) {
+    //Make endpoints secure
+    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
+
+    try {
+      var jwtBody = verify(jwt, 'shh') as any;
+      console.log(jwtBody);
+    } catch (err) {
+      throw new HttpErrors.BadRequest('JWT token invalid');
+    }
+
+    //Post payments  
     return await this.paymentRepo.create(payment);
   }
 
   @post('/stripepayment')
-  async createStripePayment(@requestBody() stripeToken: StripeToken) {
+  async createStripePayment(
+    @param.query.string('jwt') jwt: string,
+    @requestBody() stripeToken: StripeToken) {
+
+    //Make endpoints secure
+    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
+
+    try {
+      var jwtBody = verify(jwt, 'shh') as any;
+      console.log(jwtBody);
+    } catch (err) {
+      throw new HttpErrors.BadRequest('JWT token invalid');
+    }
+
     // Set your secret key: remember to change this to your live secret key in production
     // See your keys here: https://dashboard.stripe.com/account/apikeys
     var stripe = require("stripe")("sk_test_PT8I5dfDT3DyisRxL6d4fTVM");
