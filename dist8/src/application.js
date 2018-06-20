@@ -11,6 +11,10 @@ const user_repository_1 = require("./repositories/user.repository");
 class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
         // super(options);
+        // var port = 3000;
+        // if(process.env.PORT) {
+        //   port = process.env.PORT as any;
+        // }
         super({
             rest: {
                 port: process.env.PORT || 3000
@@ -32,7 +36,7 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
         var databaseName = 'matte_pistachio';
         var databaseUsername = 'ix-fs-s1';
         var databasePassword = 'ixperience2018';
-        if (environment == "JuCJeff") {
+        if (environment == "bansreepatel") {
             process.env.DATABASE_NAME;
         }
         if (environment == "perry") {

@@ -6,6 +6,6 @@ export declare class PaymentController {
     constructor(paymentRepo: PaymentRepository);
     findPayment(): Promise<Payment[]>;
     createPayment(payment: Payment): Promise<Payment>;
-    createStripePayment(stripeToken: StripeToken): Promise<any>;
+    createStripePayment(jwt: string, stripeToken: StripeToken): Promise<any>;
     getUserInformation(jwt: string): Promise<any>;
 }

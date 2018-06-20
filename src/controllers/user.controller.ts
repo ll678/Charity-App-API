@@ -11,33 +11,22 @@ export class UserController {
 
   @get('/user')
   async findUser(): Promise<Array<User>> {
+    //Find users
     return await this.userRepo.find();
   }
 
   @get('/user/{id}')
-  async findUserById(
-    @param.path.number('id') id: number,
-    @param.query.string('jwt') jwt: string
-  ): Promise<User> {
-
-    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
-
-    try {
-      var jwtBody = verify(jwt, 'shh') as any;
-    } catch (err) {
-      throw new HttpErrors.BadRequest('JWT token invalid');
-    }
-
-    // Check for valid ID
+  async findUserById(@param.path.number('id') id: number): Promise<User> {
+    //Check for valid ID
     let userExists: boolean = !!(await this.userRepo.count({ id }));
     if (!userExists) {
       throw new HttpErrors.BadRequest(`Unfortunately user ID ${id} does not exist in our system.`);
     }
-
+    //Find user by ID
     return await this.userRepo.findById(id);
   }
 
-  //Passing user information
+  //Passing user information EXAMPLE
   @get('/me')
   async getUserInformation(@param.query.string('jwt') jwt: string): Promise<any> {
     if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');

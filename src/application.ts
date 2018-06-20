@@ -14,17 +14,16 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
     
     // super(options);
 
+    // var port = 3000;
+    // if(process.env.PORT) {
+    //   port = process.env.PORT as any;
+    // }
+
     super({
       rest: {
         port: process.env.PORT||3000
       }
     });
-
-    // super({
-    //   rest: {
-    //     port: process.env.PORT || 3000
-    //   }
-    // });
 
     // Set up the custom sequence
     this.sequence(MySequence);
@@ -76,6 +75,7 @@ export class MattePistachioApiApplication extends BootMixin(RepositoryMixin(Rest
 
   async start() {
     await super.start();
+    
     const server = await this.getServer(RestServer);
     const port = await server.get(RestBindings.PORT);
     console.log(`Server is running at http://127.0.0.1:${port}`);

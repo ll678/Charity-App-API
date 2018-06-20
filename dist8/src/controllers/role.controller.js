@@ -21,9 +21,11 @@ let RoleController = class RoleController {
         this.roleRepo = roleRepo;
     }
     async createRole(role) {
+        //Post roles
         return await this.roleRepo.create(role);
     }
     async findRole() {
+        //Find roles
         return await this.roleRepo.find();
     }
 };

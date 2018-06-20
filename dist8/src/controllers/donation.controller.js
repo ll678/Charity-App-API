@@ -22,17 +22,20 @@ let DonationController = class DonationController {
         this.donationRepo = donationRepo;
     }
     async createDonation(donation) {
+        //Post donations
         return await this.donationRepo.create(donation);
     }
     async findDonation() {
+        //Get donations
         return await this.donationRepo.find();
     }
     async findCharityById(id) {
-        // Check for valid ID
+        //Check for valid ID
         let donationExists = !!(await this.donationRepo.count({ id }));
         if (!donationExists) {
             throw new rest_1.HttpErrors.BadRequest(`Unfortunately donation ID ${id} does not exist in our system.`);
         }
+        //Find donation by ID
         return await this.donationRepo.findById(id);
     }
     //Passing user information

@@ -10,24 +10,25 @@ export class CharityController {
   ) { }
 
   @post('/charity')
-  async createCharity(@requestBody() charity: Charity) {
+  async createCharity(@requestBody() charity: Charity,) {
+    //Post charities
     return await this.charityRepo.create(charity);
   }
 
   @get('/charity')
   async findCharity(): Promise<Charity[]> {
+    //Find charities
     return await this.charityRepo.find();
   }
 
   @get('/charity/{id}')
   async findCharityById(@param.path.number('id') id: number): Promise<Charity> {
-
-    // Check for valid ID
+    //Check for valid ID
     let charityExists: boolean = !!(await this.charityRepo.count({ id }));
     if (!charityExists) {
       throw new HttpErrors.BadRequest(`Unfortunately charity ID ${id} does not exist in our system.`);
     }
-
+    //Find charity by ID
     return await this.charityRepo.findById(id);
   }
 
