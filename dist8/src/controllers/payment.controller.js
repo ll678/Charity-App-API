@@ -22,15 +22,36 @@ let PaymentController = class PaymentController {
     constructor(paymentRepo) {
         this.paymentRepo = paymentRepo;
     }
-    async findPayment() {
+    async findPayment(jwt) {
+        //Make endpoints secure
+        if (!jwt)
+            throw new rest_1.HttpErrors.Unauthorized('JWT token is required.');
+        try {
+            var jwtBody = jsonwebtoken_1.verify(jwt, 'shh');
+            console.log(jwtBody);
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.BadRequest('JWT token invalid');
+        }
         //Find payments
         return await this.paymentRepo.find();
     }
-    async createPayment(payment) {
+    async createPayment(jwt, payment) {
+        //Make endpoints secure
+        if (!jwt)
+            throw new rest_1.HttpErrors.Unauthorized('JWT token is required.');
+        try {
+            var jwtBody = jsonwebtoken_1.verify(jwt, 'shh');
+            console.log(jwtBody);
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.BadRequest('JWT token invalid');
+        }
         //Post payments  
         return await this.paymentRepo.create(payment);
     }
     async createStripePayment(jwt, stripeToken) {
+        //Make endpoints secure
         if (!jwt)
             throw new rest_1.HttpErrors.Unauthorized('JWT token is required.');
         try {
@@ -71,15 +92,17 @@ let PaymentController = class PaymentController {
 };
 __decorate([
     rest_1.get('/payment'),
+    __param(0, rest_1.param.query.string('jwt')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], PaymentController.prototype, "findPayment", null);
 __decorate([
     rest_1.post('/payment'),
-    __param(0, rest_1.requestBody()),
+    __param(0, rest_1.param.query.string('jwt')),
+    __param(1, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [payment_1.Payment]),
+    __metadata("design:paramtypes", [String, payment_1.Payment]),
     __metadata("design:returntype", Promise)
 ], PaymentController.prototype, "createPayment", null);
 __decorate([
