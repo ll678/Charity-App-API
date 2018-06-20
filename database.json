@@ -2,6 +2,30 @@
     "defaultEnv": {
         "ENV": "NODE_ENV"
     },
+    "Jeff": {
+        "driver": "mysql",
+        "host": {"ENV": "DATABASE_HOST"},
+        "port": "3306",
+        "user": "root",
+        "password": "HorcruX8!",
+        "database": "matte_pistachio"
+    },
+    "Lawrence": {
+        "driver": "mysql",
+        "host": "localhost",
+        "port": "3306",
+        "user": "root",
+        "password": "HorcruX8!",
+        "database": "abcde"
+    },
+    "Bansree": {
+        "driver": "mysql",
+        "host": "localhost",
+        "port": "3306",
+        "user": "root",
+        "password": "HorcruX8!",
+        "database": "fghij"
+    },
 
     "live": {
         "driver": "mysql",
@@ -11,7 +35,6 @@
         "password": "ixperience2018",
         "database": "matte-pistachio"
     },
-    
     "dev": {
         "driver": "mysql",
         "host": "localhost",

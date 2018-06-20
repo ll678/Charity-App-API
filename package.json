@@ -32,8 +32,9 @@
     "start": "node .",
     "prepublishOnly": "npm run test",
     "live": "NODE_ENV=live db-migrate up && node .",
-    "JuCJeff": "DATABASE_HOST=localhost DATABASE_USERNAME=root DATABASE_PASSWORD=HorcruX8! DATABASE_NAME=matte_pistachio npm start",
-    "bansreepatel": "NODE_ENV=bansreepatel DATABASE_NAME=matte_pistachio npm start"
+    "JuCJeff": "NODE_ENV=JuCJeff DATABASE_USERNAME=root DATABASE_PASSWORD=HorcruX8! DATABASE_NAME=matte_pistachio npm start",
+    "bansreepatel": "NODE_ENV=bansreepatel DATABASE_NAME=matte_pistachio DATABASE_USERNAME=root DATABASE_PASSWORD=HorcruX8! npm start",
+    "jeff-migrate": "NODE_ENV=Jeff db-migrate up DATABASE_HOST=localhost DATABASE_USER=root"
   },
   "repository": {
     "type": "git"
