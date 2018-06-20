@@ -20,18 +20,40 @@ let UserController = class UserController {
     constructor(userRepo) {
         this.userRepo = userRepo;
     }
-    async findUser() {
+    async findUser(jwt) {
+        //Make endpoints secure
+        if (!jwt)
+            throw new rest_1.HttpErrors.Unauthorized('JWT token is required.');
+        try {
+            var jwtBody = jsonwebtoken_1.verify(jwt, 'shh');
+            console.log(jwtBody);
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.BadRequest('JWT token invalid');
+        }
+        //Find users
         return await this.userRepo.find();
     }
-    async findUserById(id) {
-        // Check for valid ID
+    async findUserById(id, jwt) {
+        //Make endpoints secure
+        if (!jwt)
+            throw new rest_1.HttpErrors.Unauthorized('JWT token is required.');
+        try {
+            var jwtBody = jsonwebtoken_1.verify(jwt, 'shh');
+            console.log(jwtBody);
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.BadRequest('JWT token invalid');
+        }
+        //Check for valid ID
         let userExists = !!(await this.userRepo.count({ id }));
         if (!userExists) {
             throw new rest_1.HttpErrors.BadRequest(`Unfortunately user ID ${id} does not exist in our system.`);
         }
+        //Find user by ID
         return await this.userRepo.findById(id);
     }
-    //Passing user information
+    //Passing user information EXAMPLE
     async getUserInformation(jwt) {
         if (!jwt)
             throw new rest_1.HttpErrors.Unauthorized('JWT token is required.');
@@ -47,15 +69,17 @@ let UserController = class UserController {
 };
 __decorate([
     rest_1.get('/user'),
+    __param(0, rest_1.param.query.string('jwt')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findUser", null);
 __decorate([
     rest_1.get('/user/{id}'),
     __param(0, rest_1.param.path.number('id')),
+    __param(1, rest_1.param.query.string('jwt')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Number, String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findUserById", null);
 __decorate([
