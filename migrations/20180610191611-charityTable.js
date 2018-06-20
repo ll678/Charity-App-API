@@ -44,6 +44,9 @@ exports.up = function(db, callback) {
     accountnumber: {
       type: 'string',
       length: 50
+    },
+    favorited: {
+      type: 'boolean'
     }
   }, callback);
 };

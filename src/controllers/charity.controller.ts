@@ -1,6 +1,6 @@
 import { repository } from "@loopback/repository";
 import { CharityRepository } from "../repositories/charity.repository";
-import { post, get, requestBody, HttpErrors, param } from "@loopback/rest";
+import { post, get, requestBody, HttpErrors, param, patch, put } from "@loopback/rest";
 import { Charity } from "../models/charity";
 import { sign, verify } from 'jsonwebtoken';
 
@@ -23,6 +23,7 @@ export class CharityController {
       throw new HttpErrors.BadRequest('JWT token invalid');
     }
     
+    charity.favorited = false;
     //Post charities
     return await this.charityRepo.create(charity);
   }
@@ -79,5 +80,33 @@ export class CharityController {
       throw new HttpErrors.BadRequest('JWT token invalid');
     }
   }
+
+  @patch('/mycharity/{id}')
+  async addMyCharity(@param.path.number('id') id: number) {
+    let charity = await this.charityRepo.findById(id);
+    charity.favorited = true;
+    this.charityRepo.update(charity);
+  }
+
+  @patch('/notmycharity/{id}')
+  async removeMyCharity(@param.path.number('id') id: number) {
+    let charity = await this.charityRepo.findById(id);
+    charity.favorited = false;
+    this.charityRepo.update(charity);
+  }
+
+  @get('/mycharity')
+  async findMyCharities(): Promise<Array<Charity>> {
+    var charities = await this.charityRepo.find();
+    var mycharities = [];
+    var i;
+    for (i = 0; i < charities.length; i++) {
+      if (charities[i].favorited == true) {
+        mycharities.push(charities[i]);
+      } 
+    }
+    return await mycharities;
+  }
+
 
 }

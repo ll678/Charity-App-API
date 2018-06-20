@@ -58,6 +58,12 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], Charity.prototype, "accountnumber", void 0);
+__decorate([
+    repository_1.property({
+        type: 'boolean',
+    }),
+    __metadata("design:type", Boolean)
+], Charity.prototype, "favorited", void 0);
 Charity = __decorate([
     repository_1.model({
         name: "charity"

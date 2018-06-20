@@ -3,6 +3,6 @@ import { Role } from "../models/role";
 export declare class RoleController {
     private roleRepo;
     constructor(roleRepo: RoleRepository);
-    createRole(role: Role): Promise<Role>;
-    findRole(): Promise<Role[]>;
+    createRole(jwt: string, role: Role): Promise<Role>;
+    findRole(jwt: string): Promise<Role[]>;
 }
