@@ -10,13 +10,33 @@ export class RoleController {
   ) { }
 
   @post('/role')
-  async createRole(@requestBody() role: Role,) {
+  async createRole(
+    @param.query.string('jwt') jwt: string,
+    @requestBody() role: Role, ) {
+    //Make endpoints secure
+    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
+    try {
+      var jwtBody = verify(jwt, 'shh') as any;
+      console.log(jwtBody);
+    } catch (err) {
+      throw new HttpErrors.BadRequest('JWT token invalid');
+    }
+
     //Post roles
     return await this.roleRepo.create(role);
   }
 
   @get('/role')
-  async findRole(): Promise<Role[]> {
+  async findRole(@param.query.string('jwt') jwt: string): Promise<Role[]> {
+    //Make endpoints secure
+    if (!jwt) throw new HttpErrors.Unauthorized('JWT token is required.');
+    try {
+      var jwtBody = verify(jwt, 'shh') as any;
+      console.log(jwtBody);
+    } catch (err) {
+      throw new HttpErrors.BadRequest('JWT token invalid');
+    }
+
     //Find roles
     return await this.roleRepo.find();
   }
