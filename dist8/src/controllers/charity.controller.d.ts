@@ -7,4 +7,7 @@ export declare class CharityController {
     findCharity(): Promise<Charity[]>;
     findCharityById(id: number): Promise<Charity>;
     getUserInformation(jwt: string): Promise<any>;
+    addMyCharity(id: number): Promise<void>;
+    removeMyCharity(id: number): Promise<void>;
+    findMyCharities(): Promise<Array<Charity>>;
 }

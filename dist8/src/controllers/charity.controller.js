@@ -22,6 +22,7 @@ let CharityController = class CharityController {
         this.charityRepo = charityRepo;
     }
     async createCharity(charity) {
+        charity.favorited = false;
         return await this.charityRepo.create(charity);
     }
     async findCharity() {
@@ -47,6 +48,27 @@ let CharityController = class CharityController {
         catch (err) {
             throw new rest_1.HttpErrors.BadRequest('JWT token invalid');
         }
+    }
+    async addMyCharity(id) {
+        let charity = await this.charityRepo.findById(id);
+        charity.favorited = true;
+        this.charityRepo.update(charity);
+    }
+    async removeMyCharity(id) {
+        let charity = await this.charityRepo.findById(id);
+        charity.favorited = false;
+        this.charityRepo.update(charity);
+    }
+    async findMyCharities() {
+        var charities = await this.charityRepo.find();
+        var mycharities = [];
+        var i;
+        for (i = 0; i < charities.length; i++) {
+            if (charities[i].favorited == true) {
+                mycharities.push(charities[i]);
+            }
+        }
+        return await mycharities;
     }
 };
 __decorate([
@@ -76,6 +98,26 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], CharityController.prototype, "getUserInformation", null);
+__decorate([
+    rest_1.patch('/mycharity/{id}'),
+    __param(0, rest_1.param.path.number('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], CharityController.prototype, "addMyCharity", null);
+__decorate([
+    rest_1.patch('/notmycharity/{id}'),
+    __param(0, rest_1.param.path.number('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], CharityController.prototype, "removeMyCharity", null);
+__decorate([
+    rest_1.get('/mycharity'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CharityController.prototype, "findMyCharities", null);
 CharityController = __decorate([
     __param(0, repository_1.repository(charity_repository_1.CharityRepository.name)),
     __metadata("design:paramtypes", [charity_repository_1.CharityRepository])

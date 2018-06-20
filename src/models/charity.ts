@@ -41,6 +41,11 @@ export class Charity extends Entity {
     })
     accountnumber: number;
 
+    @property({
+        type: 'boolean',
+    })
+    favorited: boolean;
+
     getId() {
         return this.id;
     }

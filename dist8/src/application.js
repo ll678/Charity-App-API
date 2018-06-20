@@ -16,6 +16,11 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
                 port: process.env.PORT || 3000
             }
         });
+        // super({
+        //   rest: {
+        //     port: process.env.PORT || 3000
+        //   }
+        // });
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         this.projectRoot = __dirname;
@@ -32,7 +37,7 @@ class MattePistachioApiApplication extends boot_1.BootMixin(repository_1.Reposit
         var databaseName = 'matte_pistachio';
         var databaseUsername = 'ix-fs-s1';
         var databasePassword = 'ixperience2018';
-        if (environment == "JuCJeff") {
+        if (environment == "bansreepatel") {
             process.env.DATABASE_NAME;
         }
         if (environment == "perry") {
