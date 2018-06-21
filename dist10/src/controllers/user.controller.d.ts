@@ -6,4 +6,5 @@ export declare class UserController {
     findUser(jwt: string): Promise<Array<User>>;
     findUserById(id: number, jwt: string): Promise<User>;
     getUserInformation(jwt: string): Promise<any>;
+    updateProfile(body: any): Promise<any>;
 }

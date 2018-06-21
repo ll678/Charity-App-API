@@ -1,8 +1,10 @@
 import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
-import { get, HttpErrors, param } from "@loopback/rest";
+import { get, HttpErrors, param, put, requestBody, patch } from "@loopback/rest";
 import { User } from "../models/user";
 import { sign, verify } from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt';
+
 
 export class UserController {
   constructor(
@@ -61,4 +63,51 @@ export class UserController {
     }
   }
 
+  @put('/user/settings') 
+  async updateProfile(@requestBody() body: any): Promise<any> {
+    var update = body.user as User;
+    var user = await this.userRepo.findById(update.id)
+    let check = await bcrypt.compare(body.user.password, user.password)
+    console.log(check);
+    if (check) {
+      user.firstname = update.firstname;
+      user.lastname = update.lastname;
+      user.email = update.email;
+      user.username = update.username;
+      user.phonenumber = update.phonenumber;
+      user.id = update.id;
+      if (body.newpassword.length > 0) {
+        let newestpassword = await bcrypt.hash(body.newpassword,10);
+        user.password = newestpassword;
+      } else {
+        body.newpassword = user.password;
+      }
+      await this.userRepo.save(user);
+      console.log("info updated");
+      var jwt = sign(
+        {
+          user: {
+            id: user.id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            email: user.email,
+            username: user.username,
+            phonenumber: user.phonenumber,
+          },
+          anything: "hello"
+        },
+        'shh',
+        {
+          issuer: 'auth.ix.co.za',
+          audience: 'ix.co.za',
+        },
+      );
+      return {
+        token: jwt
+      };
+    }
+    else {
+      throw new HttpErrors.Unauthorized("password is invalid");
+    }
+  }
 }

@@ -27,7 +27,8 @@ export class LoginController {
               username: user.username,
               firstname: user.firstname,
               lastname: user.lastname,
-              email: user.email
+              email: user.email,
+              phonenumber: user.phonenumber
             },
             anything: "hello"
           },
@@ -37,13 +38,11 @@ export class LoginController {
             audience: 'ix.co.za',
           },
         );
-
         return {
           token: jwt,
         };
       }
     }
-
     throw new HttpErrors.Unauthorized('Your username or password might be incorrect. Please try again.');
   }
 
