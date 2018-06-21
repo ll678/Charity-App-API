@@ -7,5 +7,6 @@ export declare class Charity extends Entity {
     url: string;
     bank: string;
     accountnumber: number;
+    favorited: boolean;
     getId(): number | undefined;
 }
