@@ -27,7 +27,7 @@ exports.up = function(db, callback) {
     },
     mission: {
       type: 'string',
-      length: 50
+      length: 2048
     },
     img: {
       type: 'string',

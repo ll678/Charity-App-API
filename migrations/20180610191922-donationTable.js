@@ -28,6 +28,9 @@ exports.up = function(db, callback) {
     datefrom: {
       type: 'string',
     },
+    charityid: {
+      type: 'int',
+    },
     userid: {
       type: 'int',
       foreignKey: {
