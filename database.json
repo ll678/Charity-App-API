@@ -26,14 +26,13 @@
         "password": "HorcruX8!",
         "database": "fghij"
     },
-
     "live": {
         "driver": "mysql",
-        "host": "ix-fs-1.ce5d5ftkvwyr.eu-west-1.rds.amazonaws.com",
+        "host": "matte-pistachio-ohio.cf3iw62vybyo.us-east-2.rds.amazonaws.com",
         "port": "3306",
-        "user": "ix_fs_1",
-        "password": "ixperience2018",
-        "database": "matte-pistachio"
+        "user": "jucJeff",
+        "password": "JuCJeff0911",
+        "database": "matte_pistachio_ohio"
     },
     "dev": {
         "driver": "mysql",

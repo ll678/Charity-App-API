@@ -31,7 +31,7 @@
     "prestart": "npm run build:current",
     "start": "node .",
     "prepublishOnly": "npm run test",
-    "live": "export NODE_ENV=live && export DATABASE_HOST=ix-fs-1.ce5d5ftkvwyr.eu-west-1.rds.amazonaws.com && export DATABASE_PASSWORD=ixperience2018 && export DATABASE_USERNAME=ix_fs_1 && export DATABASE_NAME=matte-pistachio && db-migrate up && node .",
+    "live": "export NODE_ENV=live && export DATABASE_HOST=matte-pistachio-ohio.cf3iw62vybyo.us-east-2.rds.amazonaws.com && export DATABASE_PASSWORD=JuCJeff0911 && export DATABASE_USERNAME=jucJeff && export DATABASE_NAME=matte_pistachio_ohio && db-migrate up && node .",
     "JuCJeff": "NODE_ENV=JuCJeff DATABASE_USERNAME=root DATABASE_PASSWORD=HorcruX8! DATABASE_NAME=matte_pistachio npm start",
     "bansreepatel": "NODE_ENV=bansreepatel DATABASE_NAME=matte_pistachio DATABASE_USERNAME=root DATABASE_PASSWORD=HorcruX8! npm start",
     "jeff-migrate": "NODE_ENV=Jeff db-migrate up DATABASE_HOST=localhost DATABASE_USER=root"
